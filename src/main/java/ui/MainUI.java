@@ -1,6 +1,8 @@
 package ui;
 
+import config.Common;
 import utils.ClipboardOperation;
+import utils.Utils;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -142,11 +144,12 @@ public class MainUI extends JFrame {
     public void saveImage(){
         try {
             Image image = ClipboardOperation.readImageFromClipboard();
-            File file = new File("D:\\a.png");
+            File file = new File(Common.USER_HOME_DIR + Common.TEMP_FILE_PATH + Common.TEMP_IMAGE_NAME_PNG);
             BufferedImage bufferedImage = new BufferedImage(image.getWidth(null),image.getHeight(null),BufferedImage.TYPE_INT_ARGB);
             Graphics2D graphics2D = bufferedImage.createGraphics();
             graphics2D.drawImage(image,null,null);
             ImageIO.write((RenderedImage)bufferedImage,"png",file);
+            Utils.uploadImage();
         } catch (IOException e) {
             e.printStackTrace();
         }
