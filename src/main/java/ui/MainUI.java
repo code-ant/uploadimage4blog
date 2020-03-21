@@ -1,6 +1,7 @@
 package ui;
 
 import config.Common;
+import lombok.extern.slf4j.Slf4j;
 import utils.ClipboardOperation;
 import utils.Utils;
 
@@ -14,6 +15,7 @@ import java.awt.image.RenderedImage;
 import java.io.File;
 import java.io.IOException;
 
+@Slf4j
 public class MainUI extends JFrame {
 
     JFrame f = new JFrame("UploadImage");
@@ -100,7 +102,7 @@ public class MainUI extends JFrame {
                     imagePanel.loadPhoto(ClipboardOperation.readImageFromClipboard());
                 default:
                     saveImage();
-                    System.out.println(ClipboardOperation.readStringFromClipboard());
+                    System.out.println(66666);
             }
         }
     }
@@ -142,6 +144,7 @@ public class MainUI extends JFrame {
     }
 
     public void saveImage(){
+        log.info("save image");
         try {
             Image image = ClipboardOperation.readImageFromClipboard();
             File file = new File(Common.USER_HOME_DIR + Common.TEMP_FILE_PATH + Common.TEMP_IMAGE_NAME_PNG);
