@@ -86,10 +86,6 @@
                         <descriptorRef>jar-with-dependencies</descriptorRef>
                     </descriptorRefs>
                 </configuration>
-<<<<<<< HEAD
-=======
-
->>>>>>> 9cf489ba946b95e4199c46832fa85002f63c6139
                 <executions>
                     <execution>
                         <id>makd-assembly</id>
@@ -102,5 +98,4 @@
             </plugin>
         </plugins>
     </build>
-
 </project>
