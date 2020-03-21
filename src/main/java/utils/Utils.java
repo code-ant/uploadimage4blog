@@ -12,6 +12,7 @@ import com.qiniu.storage.UploadManager;
 import com.qiniu.storage.model.DefaultPutRet;
 import com.qiniu.util.Auth;
 import config.Common;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.FileUtils;
 
 import java.io.File;
@@ -20,6 +21,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+@Slf4j
 public class Utils {
     public static void uploadImage() {
         Configuration configuration = new Configuration(Region.autoRegion());
@@ -30,6 +32,7 @@ public class Utils {
         String secretKey = getConfiguration("qiniuSecretKey");
         String bucket = getConfiguration("qiniuBucket");
 
+        log.info("accessKey:{},sceretKey:{},bucket:{}",accessKey, secretKey, bucket);
         Date date = new Date();
         DateFormat format = new SimpleDateFormat("yyyyMMddHHmmss");
         String key = format.format(date);
@@ -42,8 +45,6 @@ public class Utils {
                 response = uploadManager.put(Common.USER_HOME_DIR + Common.TEMP_FILE_PATH + Common.TEMP_IMAGE_NAME_PNG,
                         key, upToken);
                 DefaultPutRet putRet = new Gson().fromJson(response.bodyString(), DefaultPutRet.class);
-                System.out.println(putRet.hash);
-                System.out.println(putRet.key);
             } catch (QiniuException e) {
                 e.printStackTrace();
             }

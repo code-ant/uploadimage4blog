@@ -1,10 +1,12 @@
 package uploadimage;
 
 import config.Common;
+import lombok.extern.slf4j.Slf4j;
 import ui.MainUI;
 
 import java.io.File;
 
+@Slf4j
 public class HomePage{
     public static void main(String[] args) {
         //TODO check configuration
@@ -15,6 +17,7 @@ public class HomePage{
                 file.mkdirs();
 //            }
         }
+        log.info("init MainUI");
         new MainUI("123");
     }
 }
