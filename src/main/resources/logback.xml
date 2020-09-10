@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 
 <configuration>
+    <property name="LOG_HOME" value="${user.home}/.ui4b/log"/>
     <appender name="consoleLog" class="ch.qos.logback.core.ConsoleAppender">
         <layout class="ch.qos.logback.classic.PatternLayout">
             <pattern>
@@ -21,9 +22,13 @@
             </pattern>
         </encoder>
         <!--滚动策略-->
-        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
             <!--路径-->
-            <fileNamePattern>info.%d.log</fileNamePattern>
+            <fileNamePattern>${LOG_HOME}/ui4b.info.%d.%i.log</fileNamePattern>
+            <maxFileSize>1MB</maxFileSize>
+            <maxHistory>3</maxHistory>
+            <totalSizeCap>1MB</totalSizeCap>
+            <cleanHistoryOnStart>true</cleanHistoryOnStart>
         </rollingPolicy>
     </appender>
 
@@ -38,9 +43,13 @@
             </pattern>
         </encoder>
         <!--滚动策略-->
-        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
             <!--路径-->
-            <fileNamePattern>error.%d.log</fileNamePattern>
+            <fileNamePattern>${LOG_HOME}/ui4b.error.%d.%i.log</fileNamePattern>
+            <maxFileSize>1MB</maxFileSize>
+            <maxHistory>3</maxHistory>
+            <totalSizeCap>1MB</totalSizeCap>
+            <cleanHistoryOnStart>true</cleanHistoryOnStart>
         </rollingPolicy>
     </appender>
 
